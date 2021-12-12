@@ -1,0 +1,63 @@
+import math
+
+# Declare class here:
+class ice_cream:
+    # Declare class variables:
+    r_small=1.75
+    r_large=2.5
+    pi=3.14
+    cost_volume=0.5
+    # Declare instance methods:
+    def flavour(self):
+        choice_flavour=input("Enter choice of Flavour (vanilla,chocolate,butterscotch,blue_berry):")
+        size=input("enter size of the icecream (s/l):")
+        cost=self.calc_cost(size)
+        print("The choice of flavour is :",choice_flavour)
+        return math.ceil(cost)
+    
+    def calc_cost(self,size):
+        if size=="s":
+            cost_ice_cream=(4/3)*self.pi*(self.r_small**3)*self.cost_volume
+        elif size=="l":
+            cost_ice_cream=(4/3)*self.pi*(self.r_large**3)*self.cost_volume
+        else:
+            print("enter valid size")
+        return cost_ice_cream
+
+# Declare class here:
+class toppings(ice_cream):
+    cost_each_topping=2
+    def choose_toppings(self):
+        cost_of_icecream=self.flavour()
+        print("Select the toppings from hot_fudge,Sprinkles,Caramel.Oreos,Nuts")
+        top=input("Enter topppings choosen seperated by a comma:")
+        top_list=top.split(",")
+        print("The toppings selected are :",top_list)
+        cost=self.cost_toppings(top_list)+cost_of_icecream
+        print("The cost of toppings is : ",cost)
+    def cost_toppings(self,top_list):
+        cost_of_toppings=self.cost_each_topping*len(top_list)
+        return cost_of_toppings
+
+print("Welcome to Reddy icecream parlour")
+    
+while True:
+    type=input("Do your need ice cream(i) or sundae(s):")
+    if type=="i":
+        order=ice_cream()
+        cost = order.flavour()
+        print("The cost if icecream is : ",cost)
+    elif type=="s":
+        order=toppings()
+        order.choose_toppings()
+    else:
+        print("enter valid text")
+    more=input("Any other order (y/n)")
+    if more=="n":
+        break
+    
+        
+    
+
+
+                    
